@@ -17,10 +17,29 @@ df_vehicles = pd.read_csv(os.path.join(base_dir, 'MC_grafos/all_vehicles.csv'))
 df_vehicles['datetime'] = pd.to_datetime(df_vehicles['datetime'], format="%Y-%m-%d %H:%M:%S")
 
 
+        # PESQUISAR POSSIVEL BIBLIOTECA PRONTA PARA FAZER ESSE CALCULO (IGRAPH)
+        # EM VEZ DE USAR RANGE, FAZER UMA BUSCA OIR IDS EXISTENTES EM DF_HOUR
 for i in range(0,24):
     df_hour = df_vehicles.loc[df_vehicles['datetime'].dt.hour == i]
 
     if not df_hour.empty:
+        # criar um grafo
+        # for j in range(min(df_hour['id']), max(df_hour['id'])):
+            # df_an_veh = df_hour[df_hour[id] == j]
+            # if df_an_veh.empty:
+               # pass
+            # for k in df_an_veh:
+                # k.lt 
+                # k.lg
+                # for l in range(j + 1, max(df_hour['id'])):
+                    # df_veh = df_hour[df_hour[id] == l]
+                    # if df_veh.empty:
+                        # pass
+                    # for m in df_veh:
+                        # distance = (k.lt, k.lg) (m.lt, m.lg)
+                        # if distance >= 100:
+                            # creat edge(j,l)
+                            # breack
 
 
 # loc1 = (df_vehicles['latitude'][0], df_vehicles['longitude'][0])
