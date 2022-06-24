@@ -1,12 +1,14 @@
-#####################################
-# juntar veiculos em um único dataset
-#####################################
+#########################################
+##Juntando veiculos em um único dataset##
+#########################################
 
+from time import time
 import pandas as pd
 import numpy as np
 import os
 from pathlib import Path
 from datetime import datetime
+from pytz import timezone
 
 def concat_veh(df_vehicles, path, counter):
     vehicles = os.listdir(path)
@@ -35,7 +37,7 @@ path = os.path.join(base_dir, 'datasets/MobileCentury/SB_veh_files/')
 df_vehicles, counter = concat_veh(df_vehicles, path, counter)
 
 #Transformando de Unix code para datetime
-df_vehicles['datetime'] = [datetime.utcfromtimestamp(i).strftime('%Y-%m-%d %H:%M:%S') for i in df_vehicles['unix time']]
+df_vehicles['datetime'] = [datetime.utcfromtimestamp(i).astimezone(timezone('US/Pacific')).strftime('%Y-%m-%d %H:%M:%S') for i in df_vehicles['unix time']]
 
 #Renomeando colunas 
 df_vehicles.rename(columns={" latitude": "latitude"," longitude" : "longitude", " speed":"speed", " postmile":"postmile"}, inplace=True)
